@@ -13,6 +13,11 @@
 #  director_id :integer
 #
 class Movie < ApplicationRecord
+  belongs_to :director, class_name: "Director"
+
+  has_many :characters, class_name: "Character"
+  has_many :cast, through: :characters, source: :actor
+
   validates(:director_id, presence: true)
   validates(:title, uniqueness: true)
 end
